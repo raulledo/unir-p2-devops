@@ -1,1 +1,3 @@
 /terraform/credentials.tf
+/terraform/.terraform/
+/terraform/.terraform.lock.hcl
