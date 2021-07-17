@@ -3,7 +3,7 @@
 # configurar sincronización horaria
 
 # Configuramos el timezone a Europa/Madrid
-# https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html
+# https://docs.ansible.com/ansible/2.9/modules/timezone_module.html
 - name: Configurar time-zone a zona definida en group_vars/timezone.yaml
   timezone:
     name: "{{ timezone }}"
@@ -34,9 +34,9 @@
 # Hay que habilitar  NTP via servicio tal como se indica:
 # (This module configures the timezone setting, both of the system clock and of the hardware clock. If you want to set up the NTP, use service module.)
 # No se ve como habilitarlo mediante servicio por lo que se utilizar command
-# https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html
+# https://docs.ansible.com/ansible/2.9/modules/timezone_module.html
 # https://docs.ansible.com/ansible/2.9/modules/service_module.html
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
 - name: Habilitar ntp en timedatectl
   command:
-    cmd: timedatectl set-ntp truexº
+    cmd: timedatectl set-ntp true

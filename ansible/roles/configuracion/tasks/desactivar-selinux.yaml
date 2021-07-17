@@ -1,7 +1,9 @@
 ---
 
 # Desactivamos SELinux ya que no se utiliza con kubernetes
+# Deshabilitamos Warning por uso de sed
+# https://docs.ansible.com/ansible/2.9/modules/command_module.html
 - name: Habilitar ntp en timedatectl
   command:
     cmd: sed -i s/=enforcing/=disabled/g /etc/selinux/config
-
+    warn: false
