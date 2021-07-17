@@ -4,7 +4,7 @@
 - name: tareas comunes todos las maquinas virtuales
   hosts: all
   vars_files:
-    - "group_vars/timezone.yaml"
+    - "group-vars/timezone.yaml"
   gather_facts: false
   roles:
     - timezone
