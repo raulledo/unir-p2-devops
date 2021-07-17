@@ -3,10 +3,10 @@ ansible_user=adminazure
 ansible_interpreter=/usr/bin/python3
 
 [master]
-20.86.152.167
+20.105.185.197
 
 [workers]
-20.86.152.189
+20.105.186.142
 
 [nfs]
-20.86.152.167
+20.105.185.197
