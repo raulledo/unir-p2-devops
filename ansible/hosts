@@ -1,12 +1,12 @@
 [all:vars]
-ansible_user=ansible
+ansible_user=adminazure
 ansible_interpreter=/usr/bin/python3
 
 [master]
-minodomaster.midominio
+20.86.152.167
 
 [workers]
-miworker.midominio
+20.86.152.189
 
 [nfs]
-minodomaster.midominio
+20.86.152.167
