@@ -1,0 +1,12 @@
+[all:vars]
+ansible_user=ansible
+ansible_interpreter=/usr/bin/python3
+
+[master]
+minodomaster.midominio
+
+[workers]
+miworker.midominio
+
+[nfs]
+minodomaster.midominio

@@ -1,0 +1,33 @@
+---
+
+# requisitos previos de configuracion
+
+# Configuramos el timezone a Europa/Madrid
+# https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html
+- name: Configurar time-zone a zona definida en group_vars/timezone.yaml
+  timezone:
+    name: {{ timezone }}
+
+# Reiniciamos el servicio crond tal como se recomienda
+# (It is recommended to restart crond after changing the timezone, otherwise the jobs may run at the wrong time)
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+- name: Reiniciar crond
+  service:
+    name: crond
+    state: restarted
+
+# Arrancamos y habilitamos chronyd, en caso que no este ya arrancado
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+- name: Arrancar y habilitar chronyd en caso que no este ya arrancado
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
+
+# Hay que habilitar  NTP via servicio tal como se indica:
+# (This module configures the timezone setting, both of the system clock and of the hardware clock. If you want to set up the NTP, use service module.)
+# No se encuentra consigue habilitarlo por lo que se utilizar command
+# https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+- name: Habilitar ntp en timedatectl
+    command: timedatectl set-ntp true
