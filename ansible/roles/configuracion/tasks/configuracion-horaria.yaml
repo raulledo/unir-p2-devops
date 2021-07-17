@@ -1,6 +1,6 @@
 ---
 
-# requisitos previos de configuracion
+# configurar sincronización horaria
 
 # Configuramos el timezone a Europa/Madrid
 # https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html
@@ -18,9 +18,9 @@
 
 # Instalacion de chronyd
 # https://docs.ansible.com/ansible/2.9/modules/package_module.html
-- name: Instalacion de chronyd si no esta ya instalado
+- name: Instalacion de chrony si no esta ya instalado
   package:
-    name: chronyd
+    name: chrony
     state: present
 
 # Arrancamos y habilitamos chronyd, en caso que no este ya arrancado
@@ -38,11 +38,5 @@
 # https://docs.ansible.com/ansible/2.9/modules/service_module.html
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
 - name: Habilitar ntp en timedatectl
-    command: timedatectl set-ntp true
-
-# Instalacion de paquetes requeridos definidos en
-# https://docs.ansible.com/ansible/2.9/modules/package_module.html
-- name: Instalamos paquetes definidos en group-vars/packages.yaml
-  dnf:
-    name: "{{ paquetes }}"
-    state: present
+  command:
+    cmd: timedatectl set-ntp truexº

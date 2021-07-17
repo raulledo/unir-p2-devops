@@ -1,8 +1,7 @@
 ---
 
-# Desactivamos SELinux
-
 # Desactivamos SELinux ya que no se utiliza con kubernetes
 - name: Habilitar ntp en timedatectl
-    command: sed -i s/=enforcing/=disabled/g /etc/selinux/config
+  command:
+    cmd: sed -i s/=enforcing/=disabled/g /etc/selinux/config
 
