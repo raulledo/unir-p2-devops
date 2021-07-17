@@ -1,12 +1,13 @@
 # Crear una máquina virtual
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
-resource "azurerm_linux_virtual_machine" "Vm1Cp2" {
-  name                = "vm1cp"
+resource "azurerm_linux_virtual_machine" "VmCp2" {
+  count               = length(var.vm_names)
+  name                = "vm${var.vm_names[count.index]}cp"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = var.vm_size
   admin_username      = var.ssh_user
-  network_interface_ids = [ azurerm_network_interface.Nic1Cp2.id ]
+  network_interface_ids = [ azurerm_network_interface.NicCp2[count.index].id ]
   disable_password_authentication = true
 
   admin_ssh_key {

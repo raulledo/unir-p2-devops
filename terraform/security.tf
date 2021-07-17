@@ -1,7 +1,8 @@
 # Crear security group
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 resource "azurerm_network_security_group" "SecurityGroupCp2" {
-  name                = "sshtrafficcp2"
+  count               = length(var.vm_names)
+  name                = "sshtraffic${var.vm_names[count.index]}cp2"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -24,7 +25,8 @@ resource "azurerm_network_security_group" "SecurityGroupCp2" {
 
 # Vinculamos el security group al interface de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
-resource "azurerm_network_interface_security_group_association" "SecurityGroupAssociation1Cp2" {
-  network_interface_id      = azurerm_network_interface.Nic1Cp2.id
-  network_security_group_id = azurerm_network_security_group.SecurityGroupCp2.id
+resource "azurerm_network_interface_security_group_association" "SecurityGroupAssociationCp2" {
+  count                     = length(var.vm_names)
+  network_interface_id      = azurerm_network_interface.NicCp2[count.index].id
+  network_security_group_id = azurerm_network_security_group.SecurityGroupCp2[count.index].id
 }

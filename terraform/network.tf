@@ -22,17 +22,18 @@ resource "azurerm_subnet" "SubnetCp2" {
 
 # Crear NIC
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
-resource "azurerm_network_interface" "Nic1Cp2" {
-  name                = "nic1cp2"
+resource "azurerm_network_interface" "NicCp2" {
+  count               = length(var.vm_names)
+  name                = "nic${var.vm_names[count.index]}cp2"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
-    name                           = "ipconfiguration1cp2"
+    name                           = "ipconfiguration${var.vm_names[count.index]}cp2"
     subnet_id                      = azurerm_subnet.SubnetCp2.id
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.10"
-    public_ip_address_id           = azurerm_public_ip.PublicIp1Cp2.id
+    private_ip_address             = "10.0.1.${10 + count.index}"
+    public_ip_address_id           = azurerm_public_ip.PublicIpCp2[count.index].id
   }
 
   tags = {
@@ -42,8 +43,9 @@ resource "azurerm_network_interface" "Nic1Cp2" {
 
 # Crear IP pública
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
-resource "azurerm_public_ip" "PublicIp1Cp2" {
-  name                = "ip1cp2"
+resource "azurerm_public_ip" "PublicIpCp2" {
+  count               = length(var.vm_names)
+  name                = "ip${var.vm_names[count.index]}cp2"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
