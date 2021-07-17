@@ -1,0 +1,4 @@
+---
+
+- include_tasks: configuracion.yaml
+- include_tasks: desactivar-selinux.yaml

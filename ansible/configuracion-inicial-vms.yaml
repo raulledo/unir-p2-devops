@@ -6,6 +6,7 @@
   become: true
   vars_files:
     - "group-vars/timezone.yaml"
+    - "group-vars/paquetes.yaml"
   gather_facts: false
   roles:
-    - timezone
+    - configuracion
