@@ -1,0 +1,8 @@
+---
+
+# Instalacion Creamos un usuario no administrador
+- name: TODO - creamos un usuario no administrador
+  hosts: all
+  gather_facts: false
+  roles:
+    - crear-usuario

@@ -1,2 +1,8 @@
 ---
 
+# Instalacion de Kubernetes
+- name: TODO - instalacion de kubernetes
+  hosts: all
+  gather_facts: false
+  roles:
+    - kebernetes

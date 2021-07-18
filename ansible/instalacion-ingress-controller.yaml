@@ -1,0 +1,8 @@
+---
+
+# Instalacion Ingress controller
+- name: TODO - instalacion ingress controller
+  hosts: all
+  gather_facts: false
+  roles:
+    - ingress

@@ -1,0 +1,8 @@
+---
+
+# Instalacion Sdn Azure
+- name: TODO - instalacion sdn
+  hosts: all
+  gather_facts: false
+  roles:
+    - sdn
