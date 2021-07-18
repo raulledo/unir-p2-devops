@@ -2,19 +2,19 @@
 
 # Crear un VG (volume group)
 # https://docs.ansible.com/ansible/2.9/modules/lvg_module.html
-- name: Creamos un grupo de volumen en /dev/vdb
-  lvg:
-    vg: data_vg
-    pvs: /dev/vdb
+- name: TODO - Creamos un grupo de volumen en /dev/vdb
+#  lvg:
+#    vg: data_vg
+#    pvs: /dev/vdb
 
 # Crear un LV (logical volume)
 # https://docs.ansible.com/ansible/2.9/modules/lvol_module.html
-- name: Creamos un volumen logico
-  lvol:
-    vg: nfs_lv
-    lv: test
-    pvs: /dev/data_vg
-    opts: -l+2559 -n
+- name: TODO - Creamos un volumen logico
+#  lvol:
+#    vg: nfs_lv
+#    lv: test
+#    pvs: /dev/data_vg
+#    opts: -l+2559 -n
 
 # Instalacion de paquetes requeridos definidos en group-vars/packages-nfs.yaml
 # https://docs.ansible.com/ansible/2.9/modules/package_module.html
@@ -43,9 +43,9 @@
 
 # Releemos el fichero /etc/exports
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
-- name: Releemos fichero etc/exports
-  command:
-    cmd: exportfs -r -s
+- name: TODO - Releemos fichero etc/exports
+#  command:
+#    cmd: exportfs -r -s
 
 # Abrimos los puertos del firewall para que el servicio nfs sea accesible
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
