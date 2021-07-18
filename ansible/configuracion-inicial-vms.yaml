@@ -1,7 +1,7 @@
 ---
 
 # Playbook realizar tareas comunes a todas las maquinas virtuales
-- name: tareas comunes todos las maquinas virtuales
+- name: tareas comunes de configuracion de todas las maquinas virtuales
   hosts: all
   become: true
   vars_files:

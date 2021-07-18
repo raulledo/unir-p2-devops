@@ -1,0 +1,9 @@
+---
+
+# Playbook realizar tareas comunes a todas a master y workers
+- name: tareas comunes master y workers
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - comunes-master-workers

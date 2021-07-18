@@ -1,0 +1,30 @@
+---
+
+# Instalacion de firewalld si no esta instalado
+# https://docs.ansible.com/ansible/2.9/modules/package_module.html
+- name: Instalamos paquetes definidos en group-vars/packages.yaml
+  dnf:
+    name: firewalld
+    state: present
+
+# Arrancamos y habilitamos firewalld, en caso que no este ya arrancado
+# https://docs.ansible.com/ansible/2.9/modules/service_module.html
+- name: Arrancar y habilitar firewalld en caso que no este ya arrancado
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+# Cargar modulo de kernel br_netfilter
+# https://docs.ansible.com/ansible/2.9/modules/modprobe_module.html
+- name: Cargar modulo de kernel br_netfilter
+  modprobe:
+    name: br_netfilter
+    state: present
+
+# Habilitamos transparent masquerading
+# https://docs.ansible.com/ansible/2.9/modules/firewalld_module.html
+- firewalld:
+    masquerade: yes
+    state: enabled
+    permanent: yes
