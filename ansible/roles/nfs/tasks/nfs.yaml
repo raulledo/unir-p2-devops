@@ -1,0 +1,16 @@
+---
+
+# Instalacion de paquetes requeridos definidos en group-vars/packages-nfs.yaml
+# https://docs.ansible.com/ansible/2.9/modules/package_module.html
+- name: Instalamos paquetes definidos en group-vars/packages-nfs.yaml
+  dnf:
+    name: "{{ paquetes }}"
+    state: present
+
+# Arrancamos y habilitamos nfs-server, en caso que no este ya arrancado
+# https://docs.ansible.com/ansible/2.9/modules/service_module.html
+- name: Arrancar y habilitar nfs-server en caso que no este ya arrancado
+  service:
+    name: nfs-server
+    state: started
+    enabled: yes

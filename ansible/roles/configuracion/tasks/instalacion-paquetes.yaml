@@ -1,8 +1,8 @@
 ---
 
-# Instalacion de paquetes requeridos definidos en group-vars/packages.yaml
+# Instalacion de paquetes requeridos definidos en group-vars/packages-configuracion.yaml
 # https://docs.ansible.com/ansible/2.9/modules/package_module.html
-- name: Instalamos paquetes definidos en group-vars/packages.yaml
+- name: Instalamos paquetes definidos en group-vars/packages-configuracion.yaml
   dnf:
     name: "{{ paquetes }}"
     state: present

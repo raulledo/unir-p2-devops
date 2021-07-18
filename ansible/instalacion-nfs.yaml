@@ -1,0 +1,12 @@
+---
+
+# Playbook de instalacion de servidor nfs
+# NFS no será necesario añadir un disco según se indica en la guia de apoyo
+- name: Instalacion servidor nfs (sin añadir disco, no necesario segun guia de apoyo)
+  hosts: all
+  become: true
+  vars_files:
+    - "group-vars/paquetes-nfs.yaml"
+  gather_facts: false
+  roles:
+    - comunes-master-workers

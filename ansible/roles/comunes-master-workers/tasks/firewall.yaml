@@ -2,7 +2,7 @@
 
 # Instalacion de firewalld si no esta instalado
 # https://docs.ansible.com/ansible/2.9/modules/package_module.html
-- name: Instalamos paquetes definidos en group-vars/packages.yaml
+- name: Instalamos de firewalld si no esta instalado
   dnf:
     name: firewalld
     state: present
@@ -24,7 +24,8 @@
 
 # Habilitamos transparent masquerading
 # https://docs.ansible.com/ansible/2.9/modules/firewalld_module.html
-- firewalld:
+- name: Habilitamos transparent masquerading
+  firewalld:
     masquerade: yes
     state: enabled
     permanent: yes
