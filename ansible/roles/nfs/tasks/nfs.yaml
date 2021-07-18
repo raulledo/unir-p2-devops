@@ -1,5 +1,21 @@
 ---
 
+# Crear un VG (volume group)
+# https://docs.ansible.com/ansible/2.9/modules/lvg_module.html
+- name: Creamos un grupo de volumen en /dev/vdb
+  lvg:
+    vg: data_vg
+    pvs: /dev/vdb
+
+# Crear un LV (logical volume)
+# https://docs.ansible.com/ansible/2.9/modules/lvol_module.html
+- name: Creamos un volumen logico
+  lvol:
+    vg: nfs_lv
+    lv: test
+    pvs: /dev/data_vg
+    opts: -l+2559 -n
+
 # Instalacion de paquetes requeridos definidos en group-vars/packages-nfs.yaml
 # https://docs.ansible.com/ansible/2.9/modules/package_module.html
 - name: Instalamos paquetes definidos en group-vars/packages-nfs.yaml
@@ -18,12 +34,12 @@
 # Añade el acceso al share Nfs
 # https://docs.ansible.com/ansible/2.9/modules/lineinfile_module.html
 - name: Arrancar y habilitar nfs-server en caso que no este ya arrancado
-    lineinfile:
-      path: /etc/exports
-      line: "/srv/nfs {{ item.ip }}(rw,sync)"
-    with_items:
-      - { ip: "{private_master_ip}" }
-      - { ip: "{private_worker_ip}" }
+  lineinfile:
+    path: /etc/exports
+    line: "/srv/nfs {{ item.ip }}(rw,sync)"
+  with_items:
+    - { ip: "{{ private_master_ip }}" }
+    - { ip: "{{ private_worker_ip }}" }
 
 # Releemos el fichero /etc/exports
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
