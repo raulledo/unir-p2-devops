@@ -2,14 +2,14 @@
 
 # Crear un VG (volume group)
 # https://docs.ansible.com/ansible/2.9/modules/lvg_module.html
-- name: TODO - Creamos un grupo de volumen en /dev/vdb
+# - name: TODO - Creamos un grupo de volumen en /dev/vdb
 #  lvg:
 #    vg: data_vg
 #    pvs: /dev/vdb
 
 # Crear un LV (logical volume)
 # https://docs.ansible.com/ansible/2.9/modules/lvol_module.html
-- name: TODO - Creamos un volumen logico
+# - name: TODO - Creamos un volumen logico
 #  lvol:
 #    vg: nfs_lv
 #    lv: test
@@ -43,7 +43,7 @@
 
 # Releemos el fichero /etc/exports
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
-- name: TODO - Releemos fichero etc/exports
+# - name: TODO - Releemos fichero etc/exports
 #  command:
 #    cmd: exportfs -r -s
 
