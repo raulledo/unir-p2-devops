@@ -11,4 +11,4 @@
     - "group-vars/firewall-nfs.yaml"
   gather_facts: false
   roles:
-    - comunes-master-workers
+    - nfs
