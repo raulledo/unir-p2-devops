@@ -20,10 +20,10 @@
 - name: Arrancar y habilitar nfs-server en caso que no este ya arrancado
     lineinfile:
       path: /etc/exports
-      line: "/srv/nfs {{ item }}(rw,sync)"
+      line: "/srv/nfs {{ item.ip }}(rw,sync)"
     with_items:
-      - "{private_master_ip}"
-      - "{private_worker_ip}"
+      - { ip: "{private_master_ip}" }
+      - { ip: "{private_worker_ip}" }
 
 # Releemos el fichero /etc/exports
 # https://docs.ansible.com/ansible/2.9/modules/command_module.html
