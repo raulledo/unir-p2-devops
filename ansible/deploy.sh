@@ -4,4 +4,4 @@ ansible-playbook -i hosts -l master,workers tareas-comunes-master-workers.yaml
 ansible-playbook -i hosts -l master configuracion-kubernetes.yaml
 ansible-playbook -i hosts instalacion-sdn.yaml
 ansible-playbook -i hosts -l master instalacion-ingress-controller.yaml
-ansible-playbook -i hosts -l master crear-usuario-no-admin.yaml
+ansible-playbook -i hosts -l master creacion-usuario-no-admin.yaml
