@@ -14,3 +14,27 @@
     name: nfs-server
     state: started
     enabled: yes
+
+# Añade el acceso al share Nfs
+# https://docs.ansible.com/ansible/2.9/modules/lineinfile_module.html
+- name: Arrancar y habilitar nfs-server en caso que no este ya arrancado
+    lineinfile:
+      path: /etc/exports
+      line: "/srv/nfs {{ item }}(rw,sync)"
+    with_items:
+      - "{private_master_ip}"
+      - "{private_worker_ip}"
+
+# Releemos el fichero /etc/exports
+# https://docs.ansible.com/ansible/2.9/modules/command_module.html
+- name: Releemos fichero etc/exports
+  command:
+    cmd: exportfs -r -s
+
+# Abrimos los puertos del firewall para que el servicio nfs sea accesible
+# https://docs.ansible.com/ansible/2.9/modules/command_module.html
+- name: Abrimos los puertos del firewall para que el servicio nfs sea accesible
+  firewalld:
+    service: "{{ firewall_nfs }}"
+    state: enabled
+    permanent: yes
